@@ -230,39 +230,30 @@
     margin-bottom: 64px;
   }
 
-  .courses-grid {
+  /* COURSE SCROLL SECTIONS */
+  .course-section {
+    padding: 100px 48px;
+    border-bottom: 1px solid var(--border);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
   }
 
-  .course-card {
-    background: var(--card-bg);
-    padding: 40px 32px;
-    position: relative;
-    transition: background 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-  }
+  .course-section:last-of-type { border-bottom: none; }
 
-  .course-card:hover { background: #161614; }
+  .course-section-left {}
 
-  .course-card:hover .course-number { color: var(--accent); }
-
-  .course-number {
+  .course-section-number {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    color: #3a3a37;
-    margin-bottom: 20px;
-    transition: color 0.3s ease;
+    font-size: 120px;
+    line-height: 1;
+    color: rgba(200,169,110,0.07);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
   }
 
-  .course-tag {
+  .course-section-tag {
     display: inline-block;
     font-size: 10px;
     letter-spacing: 0.2em;
@@ -270,37 +261,72 @@
     color: var(--accent);
     border: 1px solid var(--border);
     padding: 4px 10px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
-  .course-name {
+  .course-section-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
-    margin-bottom: 16px;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 20px;
     color: var(--white);
   }
 
-  .course-desc {
-    font-size: 14px;
+  .course-section-desc {
+    font-size: 15px;
     color: var(--dim);
     font-weight: 300;
-    line-height: 1.65;
+    line-height: 1.75;
+    max-width: 420px;
   }
 
-  .course-arrow {
+  .course-section-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .btn-buy {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--accent);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-buy::after {
+    content: '';
     position: absolute;
-    bottom: 32px;
-    right: 32px;
-    font-size: 20px;
-    color: var(--border);
-    transition: all 0.3s ease;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
 
-  .course-card:hover .course-arrow {
-    color: var(--accent);
-    transform: translate(3px, -3px);
+  .btn-buy:hover::after { transform: translateX(0); }
+
+  .course-section-note {
+    font-size: 13px;
+    color: var(--dim);
+    font-weight: 300;
+  }
+
+  @media (max-width: 900px) {
+    .course-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 72px 24px;
+    }
+    .course-section-number { font-size: 80px; }
   }
 
   /* WHO */
@@ -509,45 +535,61 @@
 <div class="divider"></div>
 
 <!-- COURSES -->
-<section class="courses">
-  <p class="section-label reveal">What's Inside</p>
-  <h2 class="section-title reveal">Four Programs.<br>Pick Yours.</h2>
-  <div class="courses-grid">
+<div id="courses">
 
-    <a href="https://whop.com/joined/spec-course/products/built-to-be-noticed-the-full-masterclas/" target="_blank" class="course-card reveal">
-      <p class="course-number">01</p>
-      <span class="course-tag">Masterclass</span>
-      <h3 class="course-name">Built to Be Noticed</h3>
-      <p class="course-desc">The full masterclass. Every system in one place. Includes all three core courses plus two exclusive add-ons. Start here if you want everything.</p>
-      <span class="course-arrow">↗</span>
-    </a>
-
-    <a href="https://whop.com/joined/spec-course/products/skincare-stack-for-men/" target="_blank" class="course-card reveal">
-      <p class="course-number">02</p>
-      <span class="course-tag">Skincare</span>
-      <h3 class="course-name">Skincare Stack for Men</h3>
-      <p class="course-desc">Beginner to advanced. The exact products, the exact order, and why each one matters. Most products under $15.</p>
-      <span class="course-arrow">↗</span>
-    </a>
-
-    <a href="https://whop.com/joined/spec-course/products/jawline-face-structure-complete-guide/" target="_blank" class="course-card reveal">
-      <p class="course-number">03</p>
-      <span class="course-tag">Face Structure</span>
-      <h3 class="course-name">Jawline & Face Structure</h3>
-      <p class="course-desc">Mewing, jaw exercises, posture, and the complete guide to building definition over time. No surgery, no gimmicks.</p>
-      <span class="course-arrow">↗</span>
-    </a>
-
-    <a href="https://whop.com/joined/spec-course/products/hair-maxing-style-growth-density/" target="_blank" class="course-card reveal">
-      <p class="course-number">04</p>
-      <span class="course-tag">Hair</span>
-      <h3 class="course-name">Hair Maxxing</h3>
-      <p class="course-desc">Style, growth, density. Learn what actually works and stop wasting money on products that don't.</p>
-      <span class="course-arrow">↗</span>
-    </a>
-
+  <div class="course-section reveal">
+    <div class="course-section-left">
+      <div class="course-section-number">01</div>
+      <span class="course-section-tag">Masterclass</span>
+      <h2 class="course-section-name">Built to Be Noticed: The Full Masterclass</h2>
+      <p class="course-section-desc">The complete system. Every method, every routine, every course in one place. Skin, jaw, hair, plus two exclusive add-ons. This is everything. Start here if you want the full transformation.</p>
+    </div>
+    <div class="course-section-right">
+      <a href="https://whop.com/joined/spec-course/products/built-to-be-noticed-the-full-masterclas/" target="_blank" class="btn-buy">Buy Now</a>
+      <span class="course-section-note">Includes all 3 courses plus 2 exclusive add-ons. Lifetime access.</span>
+    </div>
   </div>
-</section>
+
+  <div class="course-section reveal">
+    <div class="course-section-left">
+      <div class="course-section-number">02</div>
+      <span class="course-section-tag">Skincare</span>
+      <h2 class="course-section-name">Skincare Stack for Men</h2>
+      <p class="course-section-desc">Beginner to advanced. The exact products, the exact order, and why each one matters. Most products under $15. Built for guys starting from zero.</p>
+    </div>
+    <div class="course-section-right">
+      <a href="https://whop.com/joined/spec-course/products/skincare-stack-for-men/" target="_blank" class="btn-buy">Buy Now</a>
+      <span class="course-section-note">Lifetime access. Community included.</span>
+    </div>
+  </div>
+
+  <div class="course-section reveal">
+    <div class="course-section-left">
+      <div class="course-section-number">03</div>
+      <span class="course-section-tag">Face Structure</span>
+      <h2 class="course-section-name">Jawline & Face Structure: Complete Guide</h2>
+      <p class="course-section-desc">Mewing, jaw exercises, posture, and face fat reduction. Real methods that build definition over time. No surgery, no gimmicks, no wasted money.</p>
+    </div>
+    <div class="course-section-right">
+      <a href="https://whop.com/joined/spec-course/products/jawline-face-structure-complete-guide/" target="_blank" class="btn-buy">Buy Now</a>
+      <span class="course-section-note">Lifetime access. Community included.</span>
+    </div>
+  </div>
+
+  <div class="course-section reveal">
+    <div class="course-section-left">
+      <div class="course-section-number">04</div>
+      <span class="course-section-tag">Hair</span>
+      <h2 class="course-section-name">Hair Maxxing: Style, Growth & Density</h2>
+      <p class="course-section-desc">The hair guide every guy needed but nobody made. Haircut recommendations, growth routines, styling that works, and products that actually deliver. Beginner to advanced.</p>
+    </div>
+    <div class="course-section-right">
+      <a href="https://whop.com/joined/spec-course/products/hair-maxing-style-growth-density/" target="_blank" class="btn-buy">Buy Now</a>
+      <span class="course-section-note">Lifetime access. Community included.</span>
+    </div>
+  </div>
+
+</div>
 
 <div class="divider"></div>
 
